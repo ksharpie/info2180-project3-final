@@ -166,7 +166,9 @@ $(document).ready(function(){
             url: "newMessage.php",
             data: $(form).serialize(),
             success: function(data){
-                if(data == "success"){
+                data = JSON.parse(data);
+                
+                if(data.result == "success"){
                     $.ajax({
                         url: "userHomePage.html",
                         success: function(html){
@@ -175,7 +177,7 @@ $(document).ready(function(){
                      });
                     alert("Message sent!");
                 }
-                else {
+                else{
                     alert("Message not sent.");
                 }
             }
