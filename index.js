@@ -112,6 +112,7 @@ $(document).ready(function(){
             url: "getAccounts.php",
             success: function(information){
                 accounts = JSON.parse(information);
+                
                 getMessages(data, accounts)
             }
         });
@@ -180,6 +181,61 @@ $(document).ready(function(){
                 else{
                     alert("Message not sent.");
                 }
+            }
+        });
+    }
+    
+    function getMessages(user, accounts){
+        
+        $.ajax({
+            type: "POST",
+            url: "getMessages.php",
+            data: { id: user.id },
+            success: function(data){
+                $("#messageList").html("");
+                
+                var messages = JSON.parse(data);
+                
+                if(Object.keys(messages).length == 0){
+                    $("#messageHeader").html("No messages.");
+                } 
+                else {
+                    var count;
+                    
+                    for(count in messages){
+                        
+                        var messsage = messages[count];
+                        
+                        var li = $("<li id='"+ count +"' class='message'>");
+                        
+                        var sender = accounts[messsage.user_id];
+                        
+                        var senderName = sender.firstname + " " + sender.lastname;
+                        
+                        $(li).append(senderName +" - "+ messsage.subject);
+                        
+                        if( messsage.hasOwnProperty("read_at") ){
+                            $(li).addClass("read");
+                        }
+                        $("#messageList").append(li);
+                    }
+                }
+
+                $(".message").each(function(){
+                    
+                    $(this).click(function(){
+                        var message = messages[$(this).attr("id")];
+                        
+                        if(!isRead(message)){
+                            markAsRead(message, user);
+                        }
+                        
+                        getMessages(user, accounts);
+                        
+                        showMessage(message, accounts);
+                    });
+                    
+                });
             }
         });
     }
