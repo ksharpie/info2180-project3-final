@@ -7,7 +7,7 @@
 
 	$accounts = array();
 
-	while($row = $result->fetch_assoc()){
+	while($row = $result->fetch()){
 		$accounts[$row["id"]] = array("id"=>$row["id"], "username"=>$row["username"], "firstname"=>$row["firstname"], "lastname"=>$row["lastname"]);
 	}
 

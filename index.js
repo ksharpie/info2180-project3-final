@@ -103,11 +103,82 @@ $(document).ready(function(){
     }
     
     function loadUserHomePage( data, html){
+        var accounts;
+        
         $("body").html(html);
         $("#name").html(data.firstname + " " + data.lastname);
         
+        $.ajax({
+            url: "getAccounts.php",
+            success: function(information){
+                accounts = JSON.parse(information);
+                getMessages(data, accounts)
+            }
+        });
+
+        $("#newMessage").click(function(){
+            newMessage(data, accounts);
+        });
+        
         $("#logout").click(function(){
            logout(); 
+        });
+    }
+    
+    function newMessage(data, accounts){
+        
+        $.ajax({
+            url: "newMessage.html",
+            success: function(page){
+                $("body").html(page);
+                for(i in accounts){
+                    c_user = accounts[i];
+                    if( c_user.id != data.id && c_user.username != "admin" ){
+                        $("#recipients").append("<option value=\""+c_user.id+"\">"+c_user.username+", "+c_user.firstname+" "+c_user.lastname+"</option>");
+                    }
+                }
+ 
+                $("#cancel").click(function(){
+                    $.ajax({
+                        url: "userHomePage.html",
+                        success: function(html){
+                            loadUserHomePage(data, html);
+                        }  
+                     });
+                });
+
+                $("#sender").val(data.id);
+
+                $("#newMessageForm").submit(function(event){
+                    
+                    sendMessage(this, data);
+                    event.preventDefault();
+                });
+            }
+        });
+        
+    }
+    
+    function sendMessage(form, user){
+        
+        $.ajax({
+            type: "POST",
+            url: "newMessage.php",
+            data: $(form).serialize(),
+            success: function(data){
+                if(data == "success"){
+                    $.ajax({
+                        url: "userHomePage.html",
+                        success: function(html){
+                            loadUserHomePage(user, html);
+                        }  
+                     });
+                    alert("Message sent!");
+                }
+                else {
+                    alert("Message not sent.");
+                }
+            }
         });
     }
     

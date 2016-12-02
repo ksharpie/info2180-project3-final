@@ -1,0 +1,46 @@
+<div class = "container">
+    
+    <div class = "header">
+        
+        <h1>Cheapo Mail Service</h1>
+        
+        <button id = "logout">Logout</button>
+        
+        <button id = "cancel">Cancel</button>
+        
+    </div>
+    
+    <div class = "newMessage">
+        
+        <p class ="greeting">New Message</p>
+        
+        <form id="newMessageForm">
+    	
+    	    <label>Subject </label> <input type="text" name="subject" maxlength="128" required>
+    	    
+    	    <br>
+    	    <br>
+    	
+    	    <label>To: </label> <select id="recipients" name="recipients[]" multiple required></select>
+    	    
+    	    <br>
+    	    <br>
+    	
+    	    <label>Body: </label>
+    	    
+    	    <br>
+    	    <br>
+    	
+    	    <textarea name="body" rows="20" cols="80" required></textarea>
+    	    
+    	    <br>
+    	    <br>
+    	
+    	    <input id="sender" type="hidden" name="sender" />
+    	
+    	    <button type="submit">Send</button>
+    </form>
+    
+    </div>
+    
+</div>
