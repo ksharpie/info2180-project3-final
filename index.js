@@ -232,12 +232,42 @@ $(document).ready(function(){
                         
                         getMessages(user, accounts);
                         
-                        showMessage(message, accounts);
+                        displayMessage(message, accounts);
                     });
                     
                 });
             }
         });
+    }
+    
+    function isRead(message){
+        return message.hasOwnProperty("read_at");
+    }
+    
+    function markAsRead(message, user){
+        $.ajax({
+            type: "POST",
+            url: "markRead.php",
+            data: { 
+                    messageId: message.id,
+                    readerId: user.id
+            },
+            success: function(data){
+                return;
+            }
+        });
+    }
+    
+    function displayMessage(message, accounts){
+        
+        var sender = accounts[message.user_id].firstname + " " + accounts[message.user_id].lastname;
+        
+        $("#message").html("<h2>"+message.subject+"</h2>");
+        
+        $("#message").append("<h4>"+sender+" at "+message.date_sent+"</h4>");
+        
+        $("#message").append("<p>"+message.body+"</p>");
+        
     }
     
     function logout(){
