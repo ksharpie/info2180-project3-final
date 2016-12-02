@@ -1,0 +1,57 @@
+<div class="container">
+    
+    <div class="header">
+        
+        <h1>Cheapo Mail Service</h1>
+    	
+    	<button id="logout">Logout</button>
+    
+    </div>
+
+	<div class="adminHomePage">
+	    
+		<p class="greeting">Welcome <span id="name"></span></p>
+
+		<div class="instructions">
+		
+			<p class="instruction">Create a User</p>
+		
+			<p class="instruction"><strong>Note:</strong> Passwords should have at least one number and one letter, and one capital letter and are at least 8 characters long</p>
+		
+		</div>
+
+        <div id="errorMessage">
+                 
+        </div>
+	    
+	    <form id="registrationForm" action="" method="post">
+	    	
+	    	First Name: <input id="firstname" type="text" name="firstname" required>
+	    	
+	    	<br>
+	    	<br>
+	    	
+	    	Last Name: <input id="lastname" type="text" name="lastname" required>
+	    	
+	    	<br>
+	    	<br>
+	        
+	        Username: <input id="username" type="text" name="username" required>
+	        
+	        <br>
+	        <br>
+	        
+	        Password: <input id="password" type="password" name="password" pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[a-z])[a-zA-Z\d]{8,}$" title="Password must be at least 8 characters long and must contain at least one lower case letter, upper case letter and number" required>
+	        
+	        <br>
+	        <br>
+	        
+	        Confirm Password: <input id="cpassword" type="password" name="cpassword" required>
+	        
+	        <br>
+	        <br>
+	        
+	        <button type="submit">Register</button>
+	    </form> 
+	</div>
+</div>
