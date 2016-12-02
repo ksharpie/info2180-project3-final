@@ -72,7 +72,28 @@ $(document).ready(function(){
         $("#name").html(data.firstname + " " + data.lastname);
         
         $("#registrationForm").submit(function(event){
-            
+            $.ajax({
+              type: "POST",
+              url: "registration.php",
+              data: $(this).serialize(),
+              success: function(data){
+                  data = JSON.parse(data);
+                  
+                  if(data.result == "passwordsNotIdentical"){
+                        $("#errorMessage").html("Passwords must be identical.");
+                    } 
+                    else if (data.result == "nameExists"){
+                        $("#errorMessage").html("Username already exists.");
+                    } 
+                    else if (data.result == "failed"){
+                        $("#errorMessage").html("Something went wrong, but we're not sure what.");
+                    } 
+                    else if (data.result == "success"){
+                        $("#errorMessage").html("Successfully registered.");
+                    }
+              }
+            });
+            event.preventDefault();
         });
         
         $("#logout").click(function(){
@@ -82,7 +103,12 @@ $(document).ready(function(){
     }
     
     function loadUserHomePage( data, html){
-        alert("user");
+        $("body").html(html);
+        $("#name").html(data.firstname + " " + data.lastname);
+        
+        $("#logout").click(function(){
+           logout(); 
+        });
     }
     
     function logout(){

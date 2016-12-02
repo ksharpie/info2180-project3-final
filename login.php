@@ -9,7 +9,6 @@
     
     $result = $db->query("SELECT * FROM user WHERE username='$user'");
 
-    // $result = $result->fetchAll(PDO::FETCH_ASSOC);
     $result = $result->fetch();
     
     if(!isset($result)){
@@ -24,7 +23,7 @@
 
     if(strcmp($passwordQuery, $realPassword) == 0){
         if($userId == ADMIN_ID)
-            $type = "admin";
+            $type = "user";
         else
             $type = "user";
 
