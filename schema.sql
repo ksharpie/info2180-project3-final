@@ -4,7 +4,7 @@ DROP DATABASE IF EXISTS cheapomail;
 CREATE DATABASE cheapomail;
 USE cheapomail;
 
-/* user tabe */
+/* user table */
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -17,7 +17,7 @@ CREATE TABLE `user` (
 );
 
 /* create admin account (id=1 represents admin) with username 'admin' and password 'admin' */
-INSERT INTO `user` (`firstname`, `lastname`, `username`, `password`) values ('admin', 'admin', 'admin', '78a41fb9315f6e22a9983e141f58534d');
+INSERT INTO `user` (`firstname`, `lastname`, `username`, `password`) values ('Master', 'User', 'admin', '78a41fb9315f6e22a9983e141f58534d');
 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message` (

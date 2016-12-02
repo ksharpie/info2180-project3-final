@@ -79,7 +79,7 @@ $(document).ready(function(){
               success: function(data){
                   data = JSON.parse(data);
                   
-                  if(data.result == "passwordsNotIdentical"){
+                    if(data.result == "passwordsNotIdentical"){
                         $("#errorMessage").html("Passwords must be identical.");
                     } 
                     else if (data.result == "nameExists"){

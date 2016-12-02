@@ -23,7 +23,7 @@
 
     if(strcmp($passwordQuery, $realPassword) == 0){
         if($userId == ADMIN_ID)
-            $type = "user";
+            $type = "admin";
         else
             $type = "user";
 

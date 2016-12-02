@@ -22,13 +22,17 @@
     }
 
     $status = $db->query("SHOW TABLE STATUS WHERE name='user'");
-    $newUserId = $status->getAttribute["Auto_increment"];
+    
+    $status = $status->fetch();
+    
+    $newUserId = $status["Auto_increment"];
+    
     $hashedPassword = hash_hmac(HASH_PASS, $password, $newUserId);
 
     $success = $db->query("INSERT INTO user (firstname, lastname, username, password) VALUES ('$firstname', '$lastname', '$username', '$hashedPassword')");
 
     if(!$success){
-        print_r(json_encode(array("result"=>"failed")));
+        print_r(json_encode(array("result"=> "failed")));
         exit;
     }
 
