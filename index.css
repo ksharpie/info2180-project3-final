@@ -1,0 +1,42 @@
+body{
+    background-color: black;
+}
+
+div.header{
+    text-align: center;
+}
+
+#greeting{
+    color:green;
+}
+
+.container{
+    background-color:grey;
+}
+
+#loginContainer{
+    margin:auto;
+    width: 500px;
+    height: 250px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding:10px;
+    background-color: grey;
+}
+
+#loginform{
+    text-align:center;
+}
+
+div.loginPage {
+  background-color: grey;
+}
+
+#errorMessage {
+  color:#FF0000;
+}
