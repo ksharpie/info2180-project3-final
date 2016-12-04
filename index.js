@@ -262,11 +262,11 @@ $(document).ready(function(){
         
         var sender = accounts[message.user_id].firstname + " " + accounts[message.user_id].lastname;
         
-        $("#message").html("<h2>"+message.subject+"</h2>");
+        $("#message").html("<h2 id=\"messageSubject\">"+message.subject+"</h2>");
         
-        $("#message").append("<h4>"+sender+" at "+message.date_sent+"</h4>");
+        $("#message").append("<h4 id=\"messageSender\">"+sender+" at "+message.date_sent+"</h4>");
         
-        $("#message").append("<p>"+message.body+"</p>");
+        $("#message").append("<p id=\"messageBody\">"+message.body+"</p>");
         
     }
     
