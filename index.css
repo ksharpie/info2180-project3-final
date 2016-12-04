@@ -12,6 +12,21 @@ div.header{
 
 .container{
     background-color:grey;
+    height:100%;
+}
+
+#logout{
+    float:right;
+    position:relative;
+}
+
+.read{
+    font-weight: bold;
+}
+
+.clearFloat 
+{
+    clear:both;
 }
 
 #loginContainer{
@@ -40,3 +55,4 @@ div.loginPage {
 #errorMessage {
   color:#FF0000;
 }
+
